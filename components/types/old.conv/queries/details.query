@@ -1,3 +1,0 @@
-SELECT ?id WHERE{
-  <{{uri}}> dcterms:identifier ?id 
-}

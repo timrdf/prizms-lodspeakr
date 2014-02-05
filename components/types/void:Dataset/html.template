@@ -32,7 +32,7 @@
         {%else%}
            <ul>
              {% for row in models.void_data_dumps %}
-               <li><a rel="void:dataDump" href='{{row.dump.mirroredUri}}'>{{row.dump.mirroredUri}}</a> </li>
+               <li><a rel="void:dataDump" href='{{row.dump.mirroredUri}}'>{{row.dump.mirroredUri|explode:"/"|pop}}</a> </li>
              {% endfor %}
            </ul>
         {%endif%}

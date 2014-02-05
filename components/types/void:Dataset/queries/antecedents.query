@@ -1,0 +1,8 @@
+prefix prov: <http://www.w3.org/ns/prov#>
+prefix dcterms: <http://purl.org/dc/terms/>
+select distinct ?entity ?type ?desc
+where {
+  <{{uri}}> prov:wasDerivedFrom ?entity .
+  optional { ?entity a ?type }
+  optional { ?entity dcterms:description ?desc }
+}

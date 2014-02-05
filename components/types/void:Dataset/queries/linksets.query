@@ -1,0 +1,14 @@
+prefix void: <http://rdfs.org/ns/void#>
+
+select distinct ?bubble1 ?subset ?size ?bubble2
+where {
+  <{{uri}}> void:subset ?subset .
+
+  ?subset
+    a void:Linkset;
+    void:target  ?bubble1,
+                 ?bubble2;
+    void:triples ?size .
+     
+  filter(?bubble1 != ?bubble2)
+}

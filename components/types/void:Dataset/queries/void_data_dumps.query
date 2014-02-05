@@ -1,0 +1,8 @@
+PREFIX void:    <http://rdfs.org/ns/void#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+
+select distinct ?dump ?format
+where {
+  <{{uri}}> void:dataDump ?dump
+  optional { ?dump dcterms:format ?format }
+}

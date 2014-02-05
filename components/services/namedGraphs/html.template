@@ -1,0 +1,24 @@
+{%include "../../includes/menu.inc"%}
+    <div class="container">
+      <h1>Named graphs available</h1>
+  {%if first.main.g%}
+      <ul>
+    {% for row in models.main %}
+        <li><a href='graph/{{row.g.mirroredUri|urifier}}'>{{row.g.mirroredUri}}</a></li>
+    {% endfor %}
+      </ul>
+  {%else%}
+    <div class="alert alert-info">
+      <p>No named graphs found</p>
+    </div>
+  {%endif%}
+    </div>
+
+   <div>
+      <p>
+         See also <a href="{{lodspk.home}}dataset-sample-graphs">Dataset sample graphs</a>.
+      </p>
+   </div>
+
+  </body>
+</html>

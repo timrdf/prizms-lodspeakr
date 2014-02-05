@@ -1,0 +1,24 @@
+prefix conversion: <http://purl.org/twc/vocab/conversion/> 
+prefix dcat:       <http://www.w3.org/ns/dcat#> 
+prefix void:       <http://rdfs.org/ns/void#> 
+prefix prov:       <http://www.w3.org/ns/prov#> 
+prefix datafaqs:   <http://purl.org/twc/vocab/datafaqs#> 
+
+select distinct ?ours 
+where {
+   <{{uri}}>
+      a void:Dataset, dcat:Dataset;
+      prov:wasDerivedFrom ?download
+   .
+
+   ?distribution
+      a dcat:Distribution;
+      dcat:accessURL ?download
+   .
+
+   ?ours
+      dcat:distribution ?distribution;
+      prov:wasAttributedTo <http://healthdata.tw.rpi.edu>;
+   .
+
+}

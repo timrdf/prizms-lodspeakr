@@ -4,22 +4,9 @@ prefix prov:       <http://www.w3.org/ns/prov#>
 prefix ov:         <http://open.vocab.org/terms/>
 prefix conversion: <http://purl.org/twc/vocab/conversion/>
 
-select distinct ?g (max(?start) as ?when)
+select distinct ?g
 where {
   graph ?g {
-    [] a ?class .
-    optional {
-      ?activity
-        a prov:Activity;
-        prov:used ?input, [
-           a sd:NamedGraph;
-           sd:name ?g
-        ];
-        prov:startedAtTime ?start
-      .
-      ?input a foaf:Document .
-    }
+    [] a []
   }
 }
-group by ?g
-order by desc(?when)

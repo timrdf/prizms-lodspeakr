@@ -1,0 +1,21 @@
+prefix prov:    <http://www.w3.org/ns/prov#>
+prefix dcterms: <http://purl.org/dc/terms/>
+prefix foaf:    <http://xmlns.com/foaf/0.1/>
+
+select distinct ?host_input ?client_copy ?client_derivation ?format ?F
+where {
+  ?host_response
+    foaf:isPrimaryTopicOf <{{uri}}>; # e.g. <http://opendap.tw.rpi.edu/source/us/dataset/opendap-prov/version/20140304-1393967542-ab12>
+    prov:wasDerivedFrom [ prov:specializationOf ?host_input ] .
+
+  ?host_input 
+     ^(prov:wasDerivedFrom | prov:wasQuotedFrom)  ?client_copy .
+
+  ?client_copy 
+     ^(prov:wasDerivedFrom | prov:wasQuotedFrom)+ ?client_derivation .
+
+  optional {                                                              
+              ?format ^dcterms:format ?client_derivation                  
+    optional {?format  dcterms:title  ?F}
+  }
+}

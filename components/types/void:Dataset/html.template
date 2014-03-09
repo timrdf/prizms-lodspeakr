@@ -24,6 +24,7 @@
 
 
 
+
     <div class="fluid-row">
       <div class="span19">
         <h3>Data Dumps</h3>
@@ -100,7 +101,36 @@
      </div>
     </div>
 
+    {%if models.pingbacks|length == 0%}
+        <div class="pr-potentials"/>
+    {%else%}
+        <div class="fluid-row">
+          <div class="span12">
+            <h3>Pingbacks</h3>
+               <ul>
+                 {% for row in models.pingbacks %}
+                   <li>Local resource: <a rel="void:dataDump" href='{{row.host_input.value}}'>{{row.host_input.value|explode:"/"|pop}}</a> </li>
+                   <ul>
+                       <li>Client's copy: <a rel="void:dataDump" href='{{row.client_copy.value}}'>{{row.client_copy.value|explode:"/"|pop}}</a> 
+                           <ul>
+                               <li>Client's derivation: <a rel="void:dataDump" href='{{row.client_derivation.value}}'>{{row.client_derivation.value|explode:"/"|pop}}</a> 
+                                {%if row.F.value%}
+                                    (<a href="{{row.format.value}}">{{row.F.value}}</a>)
+                                {%else%}
+                                    (format: <a href="{{row.format.value}}">{{row.format.value|explode:"/"|pop}}</a>)
+                                {%endif%}
+                           </ul>
+                        </li>
+                   </ul>
+                 {% endfor %}
+               </ul>
+          </div>
+        </div>
+    {%endif%}
 
+    {%if models.ckan|length == 0%}
+        <div class="pr-potentials"/>
+    {%else%}
      <div class="fluid-row">
       <div class="span8">
          <h3>CKAN listings <img width="30px" src="{{lodspk.home}}img/logo_64px_wide.png" alt="Comprehensive Knowledge Archive Network"/> </h3>
@@ -130,6 +160,7 @@
          {%endif%}
      </div>
     </div>
+    {%endif%}
 
 
     <div class="fluid-row">
